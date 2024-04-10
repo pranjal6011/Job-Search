@@ -49,7 +49,9 @@ export const postJob = catchAsyncErrors(async (req, res, next) => {
         );
     }
     const postedBy = req.user._id;
+    const jobid = Math.floor(100000000 + Math.random() * 900000000);
     const job = await Job.create({
+        jobid,
         title,
         description,
         category,

@@ -33,6 +33,9 @@ const JobDetails = () => {
         <h3>Job Details</h3>
         <div className="banner">
           <p>
+            Job ID: <span> {job.jobid}</span>
+          </p>
+          <p>
             Title: <span> {job.title}</span>
           </p>
           <p>

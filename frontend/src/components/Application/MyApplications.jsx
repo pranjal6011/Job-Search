@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../../main";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ResumeModal from "./ResumeModal";
+import { FaLink } from "react-icons/fa";
 
 const MyApplications = () => {
   const { user } = useContext(Context);
@@ -113,7 +114,7 @@ const MyApplications = () => {
         </div>
       )}
       {modalOpen && (
-        <ResumeModal imageUrl={resumeImageUrl} onClose={closeModal}  />
+        <ResumeModal imageUrl={resumeImageUrl} onClose={closeModal} />
       )}
     </section>
   );
@@ -126,6 +127,10 @@ const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
     <>
       <div className="job_seeker_card">
         <div className="detail">
+          <p>
+            <span>Job ID:</span> {element.jobID.job.jobid}
+            <Link to={`/job/${element.jobID.job._id}`}><FaLink /></Link>
+          </p>
           <p>
             <span>Name:</span> {element.name}
           </p>
@@ -164,6 +169,10 @@ const EmployerCard = ({ element, deleteApplication, openModal }) => {
     <>
       <div className="job_seeker_card">
         <div className="detail">
+          <p>
+            <span>Job ID:</span> {element.jobID.job.jobid}
+            <Link to={`/job/${element.jobID.job._id}`}><FaLink /></Link>
+          </p>
           <p>
             <span>Name:</span> {element.name}
           </p>

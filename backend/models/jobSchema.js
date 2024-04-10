@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const jobSchema = new mongoose.Schema({
+    jobid: {
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         required: [true, "Please provide a title."],

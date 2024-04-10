@@ -50,7 +50,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
     // Check if the user has already applied for the job
     const existingApplication = await Application.findOne({
         "applicantID.user": req.user._id,
-        "employerID.user": jobDetails.postedBy
+        "jobID.job": jobDetails._id
     });
     if (existingApplication) {
         return next(new ErrorHandler("You have already applied for this job.", 400));
@@ -81,6 +81,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
         address,
         applicantID,
         employerID,
+        jobID: { job: jobDetails._id },
         resume: {
             public_id: cloudinaryResponse.public_id,
             url: cloudinaryResponse.secure_url,
@@ -102,7 +103,7 @@ export const employerGetAllApplications = catchAsyncErrors(
             );
         }
         const { _id } = req.user;
-        const applications = await Application.find({ "employerID.user": _id });
+        const applications = await Application.find({ "employerID.user": _id }).populate("jobID.job");
         res.status(200).json({
             success: true,
             applications,
@@ -119,7 +120,7 @@ export const jobseekerGetAllApplications = catchAsyncErrors(
             );
         }
         const { _id } = req.user;
-        const applications = await Application.find({ "applicantID.user": _id });
+        const applications = await Application.find({ "applicantID.user": _id }).populate('jobID.job');
         res.status(200).json({
             success: true,
             applications,
