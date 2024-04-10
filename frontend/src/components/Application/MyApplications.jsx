@@ -104,6 +104,7 @@ const MyApplications = () => {
                 <EmployerCard
                   element={element}
                   key={element._id}
+                  deleteApplication={deleteApplication}
                   openModal={openModal}
                 />
               );
@@ -112,7 +113,7 @@ const MyApplications = () => {
         </div>
       )}
       {modalOpen && (
-        <ResumeModal imageUrl={resumeImageUrl} onClose={closeModal} />
+        <ResumeModal imageUrl={resumeImageUrl} onClose={closeModal}  />
       )}
     </section>
   );
@@ -149,7 +150,7 @@ const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
           />
         </div>
         <div className="btn_area">
-          <button onClick={() => deleteApplication(element._id)}>
+          <button className="login-button" onClick={() => deleteApplication(element._id)}>
             Delete Application
           </button>
         </div>
@@ -158,7 +159,7 @@ const JobSeekerCard = ({ element, deleteApplication, openModal }) => {
   );
 };
 
-const EmployerCard = ({ element, openModal }) => {
+const EmployerCard = ({ element, deleteApplication, openModal }) => {
   return (
     <>
       <div className="job_seeker_card">
@@ -185,6 +186,11 @@ const EmployerCard = ({ element, openModal }) => {
             alt="resume"
             onClick={() => openModal(element.resume.url)}
           />
+        </div>
+        <div className="btn_area">
+          <button className="login-button" onClick={() => deleteApplication(element._id)}>
+            Delete Application
+          </button>
         </div>
       </div>
     </>

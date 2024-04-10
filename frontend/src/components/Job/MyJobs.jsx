@@ -269,6 +269,21 @@ const MyJobs = () => {
                       </div>
                       <div className="long_field">
                         <div>
+                          <span>Company Name:</span>
+                          <input
+                            type="text"
+                            disabled={
+                              editingMode !== element._id ? true : false
+                            }
+                            value={element.company}
+                            onChange={(e) =>
+                              handleInputChange(
+                                element._id,
+                                "company",
+                                e.target.value
+                              )
+                            }
+                          />
                           <span>Description:</span>{" "}
                           <textarea
                             rows={5}
@@ -325,7 +340,7 @@ const MyJobs = () => {
                         ) : (
                           <button
                             onClick={() => handleEnableEdit(element._id)}
-                            className="edit_btn"
+                            className="edit_btn login-button" 
                           >
                             Edit
                           </button>
@@ -333,7 +348,7 @@ const MyJobs = () => {
                       </div>
                       <button
                         onClick={() => handleDeleteJob(element._id)}
-                        className="delete_btn"
+                        className="delete_btn login-button"
                       >
                         Delete
                       </button>

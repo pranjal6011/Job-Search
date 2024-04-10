@@ -10,6 +10,7 @@ const PostJob = () => {
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [location, setLocation] = useState("");
+  const [company, setCompany] = useState("");
   const [salaryFrom, setSalaryFrom] = useState("");
   const [salaryTo, setSalaryTo] = useState("");
   const [fixedSalary, setFixedSalary] = useState("");
@@ -40,15 +41,17 @@ const PostJob = () => {
               country,
               city,
               location,
+              company,
               fixedSalary,
             }
-          : {
+            : {
               title,
               description,
               category,
               country,
               city,
               location,
+              company,
               salaryFrom,
               salaryTo,
             },
@@ -61,6 +64,18 @@ const PostJob = () => {
       )
       .then((res) => {
         toast.success(res.data.message);
+        setTitle("");
+        setDescription("");
+        setCategory("");
+        setCountry("");
+        setCity("");
+        setLocation("");
+        setCompany("");
+        setSalaryFrom("");
+        setSalaryTo("");
+        setFixedSalary("");
+        setSalaryType("default");
+        navigateTo("/job/post");
       })
       .catch((err) => {
         toast.error(err.response.data.message);
@@ -128,12 +143,21 @@ const PostJob = () => {
                 placeholder="City"
               />
             </div>
+
+            <div className="wrapper">
             <input
               type="text"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               placeholder="Location"
-            />
+              />
+            <input
+              type="text"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              placeholder="Company Name"
+              />
+            </div>
             <div className="salary_wrapper">
               <select
                 value={salaryType}
@@ -177,7 +201,7 @@ const PostJob = () => {
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Job Description"
             />
-            <button type="submit">Create Job</button>
+            <button type="submit" className="login-button">Create Job</button>
           </form>
         </div>
       </div>

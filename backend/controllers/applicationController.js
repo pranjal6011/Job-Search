@@ -46,6 +46,17 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler("Job not found!", 404));
     }
 
+
+    // Check if the user has already applied for the job
+    const existingApplication = await Application.findOne({
+        "applicantID.user": req.user._id,
+        "employerID.user": jobDetails.postedBy
+    });
+    if (existingApplication) {
+        return next(new ErrorHandler("You have already applied for this job.", 400));
+    }
+
+
     const employerID = {
         user: jobDetails.postedBy,
         role: "Employer",
@@ -119,11 +130,11 @@ export const jobseekerGetAllApplications = catchAsyncErrors(
 export const jobseekerDeleteApplication = catchAsyncErrors(
     async (req, res, next) => {
         const { role } = req.user;
-        if (role === "Employer") {
-            return next(
-                new ErrorHandler("Employer not allowed to access this resource.", 400)
-            );
-        }
+        // if (role === "Employer") {
+        //     return next(
+        //         new ErrorHandler("Employer not allowed to access this resource.", 400)
+        //     );
+        // }
         const { id } = req.params;
         const application = await Application.findById(id);
         if (!application) {

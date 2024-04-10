@@ -1580,3 +1580,7 @@ nav .hamburger {
         z-index: 11;
     }
 }
+
+.login-button {
+    cursor: pointer;
+}

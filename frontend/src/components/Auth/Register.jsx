@@ -116,7 +116,7 @@ const Register = () => {
                 <RiLock2Fill />
               </div>
             </div>
-            <button type="submit" onClick={handleRegister}>
+            <button type="submit" onClick={handleRegister} className="login-button">
               Register
             </button>
             <Link to={"/login"}>Login Now</Link>
