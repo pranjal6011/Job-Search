@@ -43,8 +43,8 @@ const Register = () => {
     }
   };
 
-  if(isAuthorized){
-    return <Navigate to={'/'}/>
+  if (isAuthorized) {
+    return <Navigate to={'/'} />
   }
 
 
@@ -53,7 +53,7 @@ const Register = () => {
       <section className="authPage">
         <div className="container">
           <div className="header">
-            <img src="/JobZeelogo.png" alt="logo" />
+            <img src="/logoblack.png" alt="logo" />
             <h3>Create a new account</h3>
           </div>
           <form>
@@ -73,7 +73,7 @@ const Register = () => {
               <div>
                 <input
                   type="text"
-                  placeholder="Zeeshan"
+                  placeholder="Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -85,7 +85,7 @@ const Register = () => {
               <div>
                 <input
                   type="email"
-                  placeholder="zk@gmail.com"
+                  placeholder="abc@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -97,7 +97,7 @@ const Register = () => {
               <div>
                 <input
                   type="number"
-                  placeholder="12345678"
+                  placeholder="123456789"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />

@@ -1361,8 +1361,9 @@ nav .container {
 }
 
 nav .container .logo {
-    width: 120px;
-    height: 120px;
+    width: 170px;
+    height: 80px;
+    padding: 5px;
 }
 
 nav .container .logo img {
